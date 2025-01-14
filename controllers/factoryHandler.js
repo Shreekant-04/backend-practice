@@ -58,7 +58,6 @@ exports.getOne = (Model, popOptions) =>
 
     res.status(200).json({
       status: 'success',
-      reviews: doc.reviews.length,
       data: {
         data: doc
       }
@@ -74,12 +73,13 @@ exports.getAll = Model =>
       .sort()
       .limitFields()
       .paginate();
+    // const doc = await features.query.explain();
     const doc = await features.query;
 
     // SEND RESPONSE
     res.status(200).json({
       status: 'success',
-      results: doc.length,
+      results: `${doc.length} ${String(Model.modelName)} found`,
       data: {
         data: doc
       }

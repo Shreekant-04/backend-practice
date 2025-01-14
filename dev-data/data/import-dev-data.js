@@ -8,12 +8,12 @@ const Review = require('./../../models/reviewModel');
 dotenv.config({ path: './config.env' });
 
 const DB = process.env.DATABASE;
-console.log(process.argv);
+// console.log(process.argv);
 
 mongoose.connect(DB).then(() => console.log('DB connection successful!'));
 
 // READ JSON FILE
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/reviews.json`, 'utf-8'));
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));
 
 // IMPORT DATA INTO DB
 const importData = async Collection => {

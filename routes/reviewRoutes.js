@@ -20,4 +20,5 @@ router
   .delete(reviewController.deleteReview)
   .patch(reviewController.updateReview);
 
+router.get('/:tourId', reviewController.getAllReview);
 module.exports = router;
