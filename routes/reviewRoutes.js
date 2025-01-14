@@ -17,8 +17,16 @@ router
 
 router
   .route('/:id')
-  .delete(reviewController.deleteReview)
-  .patch(reviewController.updateReview);
+  .delete(
+    authController.protect,
+    authController.restrictTo('user', 'admin'),
+    reviewController.deleteReview
+  )
+  .patch(
+    authController.protect,
+    authController.restrictTo('user', 'admin'),
+    reviewController.updateReview
+  );
 
-router.get('/:tourId', reviewController.getAllReview);
+// router.get('/:tourId', reviewController.getAllReview); already defined in the above code
 module.exports = router;
