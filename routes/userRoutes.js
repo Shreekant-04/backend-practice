@@ -10,20 +10,17 @@ router.post('/login', authController.login); //done
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 
-router.patch(
-  '/updateMyPassword',
-  authController.protect,
-  authController.updatePassword
-);
+router.use(authController.protect);
 
-router.patch('/updateMe', authController.protect, userController.updateMe);
-router.delete('/deleteMe', authController.protect, userController.deleteMe);
+router.patch('/updateMyPassword', authController.updatePassword);
+router.get('/getme', userController.getMe, userController.getUser);
 
-router
-  .route('/')
-  .get(userController.getAllUsers) // done
-  .post(userController.createUser);
+router.patch('/updateMe', userController.updateMe);
+router.delete('/deleteMe', userController.deleteMe);
 
+// admin features only.
+router.use(authController.restrictTo('admin'));
+router.route('/').get(userController.getAllUsers); // done
 router
   .route('/:id')
   .get(userController.getUser)

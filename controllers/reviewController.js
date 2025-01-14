@@ -9,6 +9,7 @@ exports.getReviewIds = catchAsync(async (req, res, next) => {
   next();
 });
 exports.getAllReview = factory.getAll(Review);
+exports.getReview = factory.getOne(Review);
 exports.createReview = factory.createOne(Review);
 exports.deleteReview = factory.deleteOne(Review);
 exports.updateReview = factory.updateOne(Review);
