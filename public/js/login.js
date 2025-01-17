@@ -1,4 +1,6 @@
 /* eslint-disable */
+// import axios from 'axios';
+
 import { showAlert, hideAlert } from './alert.js';
 
 export async function login(email, password) {
@@ -24,7 +26,9 @@ export async function logout() {
   try {
     const res = await axios.get('http://localhost:3000/api/v1/users/logout');
     if (res.data.status === 'success') {
-      window.location.reload(true);
+      window.location.pathname === '/me'
+        ? (window.location.href = '/login')
+        : (window.location.href = window.location.pathname);
     }
   } catch (err) {
     console.error(err);

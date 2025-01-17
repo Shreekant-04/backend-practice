@@ -202,7 +202,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
 
   // 3) If so, update password
   user.password = req.body.password;
-  // user.passwordConfirm = req.body.passwordConfirm;
+  user.passwordConfirm = req.body.passwordConfirm;
   await user.save();
   // User.findByIdAndUpdate will NOT work as intended!
 
@@ -250,7 +250,7 @@ exports.isLoggedIn = async (req, res, next) => {
   next();
 };
 exports.logout = async (req, res) => {
-  res.cookie('jwt', 'loggedout', {
+  res.cookie('jwt', '', {
     expires: new Date(Date.now() + 5 * 1000),
     httpOnly: true
   });
