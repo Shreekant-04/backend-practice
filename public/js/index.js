@@ -35,9 +35,18 @@ const updateForm = document.querySelector('.form-user-data');
 if (updateForm) {
   updateForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const name = document.querySelector('#name').value;
-    const email = document.querySelector('#email').value;
-    updateUser({ name, email }, 'user');
+    const form = new FormData();
+    form.append('name', document.querySelector('#name').value);
+    form.append('email', document.querySelector('#email').value);
+    form.append('photo', document.querySelector('#photo').files[0]);
+    try {
+      await updateUser(form, 'user');
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 1000);
+    } catch (error) {
+      console.error(error);
+    }
   });
 }
 const passwordForm = document.querySelector('.password--updateForm');
