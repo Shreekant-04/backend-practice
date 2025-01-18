@@ -14,10 +14,9 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const Email = require('./utils/email');
 
 const app = express();
-
-
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -73,6 +72,26 @@ app.use((req, res, next) => {
   // console.log(req.cookies);
   next();
 });
+
+// verify email transport
+// console.log(
+//   new Email(
+//     {
+//       name: 'shreekant kumar',
+//       email: 'shreekantkumar@gmail.com'
+//     },
+//     'abc.com'
+//   )
+//     .newTransport()
+//     .verify()
+//     .then(() => {
+//       console.log('email transport verified');
+//     })
+//     .catch(err => {
+//       console.log('email transport not verified');
+//       console.error(err);
+//     })
+// );
 
 // 3) ROUTES
 app.use('/', viewRouter);
