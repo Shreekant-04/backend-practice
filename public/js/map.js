@@ -8,11 +8,11 @@ export function initializeMap(locations) {
 
   const canvas = document.createElement('canvas');
   const gl = canvas.getContext('webgl');
-  if (!gl) {
-    console.error('Failed to create WebGL context.');
-  } else {
-    console.log('WebGL context created successfully.');
-  }
+  // if (!gl) {
+  //   console.error('Failed to create WebGL context.');
+  // } else {
+  //   console.log('WebGL context created successfully.');
+  // }
 
   let map = new mapboxgl.Map({
     container: 'map',

@@ -3,6 +3,7 @@
 import { initializeMap } from './map.js';
 import { login, logout } from './login.js';
 import { updateUser } from './updateData.js';
+import { bookTour } from './stripe.js';
 
 const mapElement = document.getElementById('map');
 if (mapElement) {
@@ -23,9 +24,11 @@ if (form) {
 }
 
 const logoutBtn = document.querySelector('.nav__el--logout');
+// console.log(logoutBtn)
 if (logoutBtn) {
   logoutBtn.addEventListener('click', () => {
     // Your logout logic here
+    // console.log("clicked")
     logout();
   });
 }
@@ -66,5 +69,14 @@ if (passwordForm) {
     document.querySelector('#password-current').value = '';
     document.querySelector('#password').value = '';
     document.querySelector('#password-confirm').value = '';
+  });
+}
+
+const bookNow = document.querySelector('#bookTour');
+if (bookNow) {
+  bookNow.addEventListener('click', async e => {
+    e.target.textContent= "Processing..."
+    const { tourId } = e.target.dataset;
+    bookTour(tourId);
   });
 }
