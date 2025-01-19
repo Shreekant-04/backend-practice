@@ -1,18 +1,18 @@
 /* eslint-disable */
 // import axios from 'axios';
 
-import { showAlert, hideAlert } from './alert.js';
+import { showAlert } from './alert.js';
 
 export async function login(email, password) {
   try {
-    const res = await axios.post('http://localhost:3000/api/v1/users/login', {
+    const res = await axios.post('/api/v1/users/login', {
       email,
       password
     });
     if (res.data.status === 'success') {
       showAlert('success', 'Login Success');
       window.setTimeout(() => {
-        window.location.href = 'http://localhost:3000';
+        window.location.href = '/';
       }, 1600);
     } else {
       showAlert('error', res.data.message);
@@ -24,7 +24,7 @@ export async function login(email, password) {
 
 export async function logout() {
   try {
-    const res = await axios.get('http://localhost:3000/api/v1/users/logout');
+    const res = await axios.get('/api/v1/users/logout');
     if (res.data.status === 'success') {
       window.location.pathname === '/me'
         ? (window.location.href = '/login')
