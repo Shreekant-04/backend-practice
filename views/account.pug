@@ -12,7 +12,7 @@ block content
             nav.user-view__menu
                 ul.side-nav
                     +listItems("#","settings","Settings",true)
-                    +listItems("#","briefcase","My bookings")
+                    +listItems("/my-bookings","briefcase","My bookings")
                     +listItems("#","star","My reviews")
                     +listItems("#","credit-card","Billing")
                 - if(user && user.role==="admin")

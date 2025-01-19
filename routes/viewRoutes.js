@@ -12,6 +12,7 @@ router.get(
   viewController.getOverview
 );
 router.get('/login', authController.isLoggedIn, viewController.getLogin);
+router.get('/my-bookings', authController.protect, viewController.getBookings);
 
 router.get('/tour/:slug', authController.isLoggedIn, viewController.getTour);
 
