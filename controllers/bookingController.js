@@ -32,9 +32,7 @@ exports.getCheckout = catchAsync(async (req, res, next) => {
     payment_intent_data: {
       setup_future_usage: 'off_session'
     },
-    success_url: `${req.protocol}://${req.get('host')}/?tour=${
-      req.params.tourId
-    }&user=${req.user.id}&price=${tour.price}`,
+    success_url: `${req.protocol}://${req.get('host')}/my-bookings`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
     customer_email: req.user.email,
     client_reference_id: tour.id,
